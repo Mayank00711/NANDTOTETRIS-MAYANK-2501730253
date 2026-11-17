@@ -1,0 +1,10 @@
+// Not gate built from a single NAND: Not(a) = Nand(a, a)
+// out = !in
+
+CHIP Not {
+    IN in;
+    OUT out;
+
+    PARTS:
+    Nand(a=in, b=in, out=out);
+}
