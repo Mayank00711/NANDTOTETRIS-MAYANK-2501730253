@@ -1,0 +1,15 @@
+// 1-bit register.
+// If load[t] == 1 then out[t+1] = in[t]
+//                 else out[t+1] = out[t]   (the bit remembers its value)
+//
+// A DFF alone always stores its input, so a Mux in front of it decides
+// between the new value (load = 1) and the DFF's own output fed back (load = 0).
+
+CHIP Bit {
+    IN in, load;
+    OUT out;
+
+    PARTS:
+    Mux(a=prev, b=in, sel=load, out=next);
+    DFF(in=next, out=out, out=prev);
+}

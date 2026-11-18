@@ -1,0 +1,11 @@
+// And gate built only from NAND: And(a, b) = Not(Nand(a, b))
+// out = a AND b
+
+CHIP And {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Nand(a=a, b=b, out=nandAB);
+    Nand(a=nandAB, b=nandAB, out=out);
+}

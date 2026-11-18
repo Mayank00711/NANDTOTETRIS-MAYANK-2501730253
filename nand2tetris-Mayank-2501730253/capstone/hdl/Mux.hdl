@@ -1,0 +1,14 @@
+// 2-way multiplexor.
+// If sel == 0 then out = a, else out = b.
+// out = (a AND NOT sel) OR (b AND sel)
+
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+
+    PARTS:
+    Not(in=sel, out=notSel);
+    And(a=a, b=notSel, out=aSel);
+    And(a=b, b=sel, out=bSel);
+    Or(a=aSel, b=bSel, out=out);
+}
